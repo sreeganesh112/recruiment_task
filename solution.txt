@@ -1,0 +1,46 @@
+function apartmentHunting(blocks, reqs) {
+  // Write your code here.
+
+
+var storage = new Array(blocks.length);
+    for (let i = 0; i < blocks.length; i++) {
+        storage[i] = new Array(reqs.length);
+    }
+
+    reqs.forEach((e,i)=>{
+
+        nextBlock: for(let j=0; j<blocks.length; j++){   
+          //focus on each block
+
+            if(!blocks[j][e]){
+                let count = 1;
+                storage[j][i] = -1;
+
+                while(count<=Math.max(j, blocks.length-j-1)){
+
+                    if(0<=j+count && j+count<blocks.length) if(blocks[j+count][e]){
+                        storage[j][i] = count;
+                        continue nextBlock;
+                    } 
+
+                    if(0<=j-count && j-count<blocks.length) if(blocks[j-count][e]){
+                        storage[j][i] = count;
+                        continue nextBlock;
+                    } 
+
+                    count++;
+                } 
+
+            } else storage[j][i] = 0;
+        }
+        
+    })
+
+    var storage2 = storage.map(e=>Math.max(...e));
+    return storage2.indexOf(Math.min(...storage2))
+
+}
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
+

@@ -1,0 +1,13 @@
+The function 'apartmentHunting' loops through each element in 'reqs' and then inturn loops through each element in 'blocks'. 
+
+I created a 'storage' 2D array with 'blocks.length' empty elements and inturn 'reqs.length' empty elements inside each element for storing the farthest distance I have to walk to reach the 'req' in question.
+
+If the 'req' in question is present in the current 'block' in question, then corresponding element in the 'storage' is set to '0'.
+
+If the 'req' in question is absent in the current 'block' in question, then corresponding element in the 'storage' is set to '-1' by default hoping to catch a scenario where the 'req' is absent in all the 'blocks'.
+
+This default value -1 will get updated as and when the 'req' is found in the other 'blocks'. I initialized 'count' with the value '1'. I am checking in the next 'count' block first and based on the result, I am checking in the previous 'count' block. The corresponding element in the 'storage' is set to 'count' if found. Otherwise, I am incrementing the 'count' and looping the same process again.
+
+Eventually as the loop finishes the storage is filled with the farthest distances I have to walk in order to reach each of the 'reqs', i.e., [[gym, school, store, ...], [gym, school, store ...], [gym, school, store ...], ...].
+
+Finally, I am taking the maximum of the farthest distances corresponding to each 'block' first, then I am taking the minimum of these farthest distances in order to find the least farthest distance I have to walk to satisfy the 'reqs'.The index of the same 'block' (the minimum value) is returned from the function.
